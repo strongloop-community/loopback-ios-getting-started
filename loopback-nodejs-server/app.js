@@ -22,7 +22,7 @@ var DataStoreOne = loopback.createDataSource({ connector: loopback.Memory });
 // Define your Product 'Model' Type
 var Tab1MobileModel = loopback.createModel('product', {
   name: { type: "String", required: true },
-  bars: { type: "Number", required: false }
+  inventory: { type: "Number", required: false }
 });
 //Attach your new ModelObject to the Memory DataStore
 Tab1MobileModel.attachTo(DataStoreOne);
@@ -31,9 +31,9 @@ app.model(Tab1MobileModel);
 
 //Lets Create Some default data for our Tab1MobileModel
 
-var newProductA = {"name":"product A", bars:22 };
-var newProductB = {"name":"product B", bars:22 };
-var newProductC = {"name":"product C", bars:22 };
+var newProductA = {"name":"product A", inventory:12 };
+var newProductB = {"name":"product B", inventory:33 };
+var newProductC = {"name":"product C", inventory:66 };
 importer.task(Tab1MobileModel, 'create', newProductA);
 importer.task(Tab1MobileModel, 'create', newProductB);
 importer.task(Tab1MobileModel, 'create', newProductC);
@@ -50,6 +50,7 @@ importer.task(Tab1MobileModel, 'create', newProductC);
 // Define your Car 'Model' Type
 // Uncomment the code below to provide data to Tab 2
 
+/*
 // Set the if conditional to true the DataStoreTwo connect to an existing Oracle DB that we are hosting 
 // else you can connect to another 'in-memory' data store, 
 // 
@@ -131,6 +132,7 @@ if ( true ) {
 	importer.task(Tab2MobileModel, 'create', newCarB);
 	importer.task(Tab2MobileModel, 'create', newCarC);
 }//end else
+*/
 
 
 // ++++++++++++++++++++++++++++++++++++
@@ -138,8 +140,7 @@ if ( true ) {
 // ++++++++++++++++++++++++++++++++++++
 // This code is used for Tab Three, of the Mobile App
 // Uncomment the code below to provide data to Tab 3
-
-
+/*
 //Expose a custom remote method, http://localhost:3000/cars/custommethod?arg1=yack&arg2=123
 Tab2MobileModel.custommethod = function( arg1, arg2,fn )
 {
@@ -168,7 +169,7 @@ loopback.remoteMethod(
     	returns: {arg: 'metric', root: true}
   	}
 );//end added a remoteMethod 'myCustomRemoteMethod'
-
+*/
 
 // ++++++++++++++++++++++++++++++++++++
 // Tab 4 ! Lets Leverage the backend Server to Improve our mobile experience

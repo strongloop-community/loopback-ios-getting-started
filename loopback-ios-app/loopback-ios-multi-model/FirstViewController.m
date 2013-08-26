@@ -10,22 +10,22 @@
 /*
  Tab 1, Step 1
  
- This Tab shows you how to Create Update and Delete Model types and persist to the LoopBack server
+ This Tab shows you how to Create Update and Delete Model types and persist to the LoopBack server,
  
- Uncomment the code sections below to enable 
-    - Referesh
-    - Create
-    - Update
-    - Delete
+ You need to uncomment the code sections in the methods below to enable the Create Update & Delete Operations
+ - ( void ) getModels
+ - ( void ) createNewModel
+ - ( void ) updateExistingModel
+ - ( void ) deleteExistingModel
  
  You will need to have your Loopback Node server running
  
  You can start your Loopback Node server from the command line terminal with $slnode run app.js from within the loopback-nodejs-server/ folder
  
  You can find developer doc's for LoopBack here:
-    file://localhost/Users/mattschmulen/nodelife/strongloop/strongloop-mobile/loopback-clients/ios/docs/html/annotated.html
+ http://docs.strongloop.com/loopback
  
-*/
+ */
 
 #import "FirstViewController.h"
 #import "AppDelegate.h"
@@ -64,7 +64,6 @@
     void (^loadErrorBlock)(NSError *) = ^(NSError *error) {
         NSLog( @"Error %@", error.description);
         [AppDelegate showGuideMessage: @"No Server Found"];
-        //[[[UIApplication sharedApplication] delegate] showGuideMessage:@"No Server Found"];
     };//end selfFailblock
     
     // Define the load success block for the LBModelPrototype allWithSuccess message
@@ -72,7 +71,7 @@
         NSLog( @"selfSuccessBlock %d", models.count);
         self.tableData  = models;
         [self.myTableView reloadData];
-       // [self showGuideMessage:@"Great! you just pulled code from node"];
+        // [self showGuideMessage:@"Great! you just pulled code from node"];
     };//end selfSuccessBlock
     
     //Get a local representation of the 'products' model type
@@ -82,7 +81,10 @@
     // Equivalent http JSON endpoint request : http://localhost:3000/products
     
     [objectB allWithSuccess: loadSuccessBlock failure: loadErrorBlock];
+    return;
     */
+    
+    [AppDelegate showGuideMessage: @"Step1 uncomment getModels"];
 };
 
 
@@ -96,7 +98,7 @@
     LBModelPrototype *prototype = [self.adapter prototypeWithName:@"products"];
     
     //create new LBModel of type
-    LBModel *model = [prototype modelWithDictionary:@{ @"name": @"new product" , @"inventory" : @"77" }];
+    LBModel *model = [prototype modelWithDictionary:@{ @"name": @"new product", @"inventory" : @99 }];
     
     // Define the load error functional block
     void (^saveNewErrorBlock)(NSError *) = ^(NSError *error) {
@@ -106,12 +108,18 @@
     
     // Define the load success block for saveNewSuccessBlock message
     void (^saveNewSuccessBlock)() = ^() {
-       NSLog( @"Create Success !" );
+        [AppDelegate showGuideMessage: @"Tab 'One' CreateSuccess"];
+        
+        // call a 'local' refresh to update the tableView
+        [self getModels];
     };
     
     //Persist the newly created Model to the LoopBack node server
     [model saveWithSuccess:saveNewSuccessBlock failure:saveNewErrorBlock];
-    */
+    return;
+    */    
+    
+    [AppDelegate showGuideMessage: @"Step1 uncomment createNewModel"];
 };
 
 - ( void ) updateExistingModel
@@ -141,6 +149,9 @@
         };
         void (^saveSuccessBlock)() = ^() {
             [AppDelegate showGuideMessage: @"Tab 'One' UpdateSuccess"];
+            
+            // call a 'local' refresh to update the tableView
+            [self getModels];
         };
         [model saveWithSuccess:saveSuccessBlock failure:saveErrorBlock];
     };
@@ -151,11 +162,18 @@
     //Get the instance of the model with ID = 2
     // Equivalent http JSON endpoint request : http://localhost:3000/products/2
     [prototype findWithId:@2 success:findSuccessBlock failure:findErrorBlock ];
+    return;
     */
+    
+    
+    [AppDelegate showGuideMessage: @"Step1 uncomment updateExistingModel"];
 }//end updateExistingModelAndPushToServer
 
 - ( void ) deleteExistingModel
 {
+    // ++++++++++++++++++++++++++++++++++++
+    // Remove the Comment below to denable the delete button to remove a model instances from the server
+    // ++++++++++++++++++++++++++++++++++++
     /*
     // Define the find error functional block
     void (^findErrorBlock)(NSError *) = ^(NSError *error) {
@@ -165,19 +183,20 @@
     
     // Define your success functional block
     void (^findSuccessBlock)(LBModel *) = ^(LBModel *model) {
-        //dynamically add an 'inventory' variable to this model type before saving it to the server
-        model[@"inventory"] = @"22";
         
         //Define the save error block
         void (^removeErrorBlock)(NSError *) = ^(NSError *error) {
             NSLog( @"Error on Save %@", error.description);
         };
         void (^removeSuccessBlock)() = ^() {
-            [AppDelegate showGuideMessage: @"Tab 'One' UpdateSuccess"];
+            [AppDelegate showGuideMessage: @"Tab 'One' DeleteSuccess"];
+            
+            // call a 'local' refresh to update the tableView
+            [self getModels];
         };
         
-        //[model saveWithSuccess:saveSuccessBlock failure:saveErrorBlock];
-        //[self invokeMethod:@"remove" parameters:[self toDictionary] success:removeSuccessBlock failure:removeSuccessBlock];
+        //Destroy this model instance on the LoopBack node server
+        [ model destroyWithSuccess:removeSuccessBlock failure:removeErrorBlock ];
     };
     
     //Get a local representation of the 'products' model type
@@ -186,12 +205,14 @@
     //Get the instance of the model with ID = 2
     // Equivalent http JSON endpoint request : http://localhost:3000/products/2
     [prototype findWithId:@2 success:findSuccessBlock failure:findErrorBlock ];
+    return;
     */
     
+    [AppDelegate showGuideMessage: @"Step1 uncomment deleteExistingModel"];
 }//end deleteExistingModel
 
 - (IBAction)actionRefresh:(id)sender {
-     [self getModels];
+    [self getModels];
 }
 
 - (IBAction)actionCreate:(id)sender {
@@ -199,7 +220,7 @@
 }
 
 - (IBAction)actionUpdate:(id)sender {
-     [self updateExistingModel];
+    [self updateExistingModel];
 }
 
 - (IBAction)actionDelete:(id)sender {
@@ -225,8 +246,10 @@
     if ( [[ [self.tableData objectAtIndex:indexPath.row] class] isSubclassOfClass:[LBModel class]])
     {
         LBModel *model = (LBModel *)[self.tableData objectAtIndex:indexPath.row];
-        cell.textLabel.text = model[@"name"]; // [model objectForKeyedSubscript:@"name"];
-        cell.textLabel.text = [[NSString alloc] initWithFormat:@"%@ - %d", [model objectForKeyedSubscript:@"name"] , [[model objectForKeyedSubscript:@"inventory"] integerValue] ];
+        //cell.textLabel.text = model[@"name"]; // [model objectForKeyedSubscript:@"name"];
+        cell.textLabel.text = [[NSString alloc] initWithFormat:@"%@ - %@",
+                               [model objectForKeyedSubscript:@"name"] ,
+                               (int)[model objectForKeyedSubscript:@"inventory"] ];
     }
     return cell;
 }

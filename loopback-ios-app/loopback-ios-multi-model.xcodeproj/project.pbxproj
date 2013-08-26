@@ -177,7 +177,6 @@
 		AE9D02A517A09FB500306CEC /* loopback-ios-multi-model */ = {
 			isa = PBXGroup;
 			children = (
-				AE9D02B717A09FB500306CEC /* MainStoryboard.storyboard */,
 				AE9D02BB17A09FB500306CEC /* FirstViewController.m */,
 				AE9D02C217A09FB500306CEC /* SecondViewController.m */,
 				AE9D02F017A0B90600306CEC /* ThirdViewController.m */,
@@ -190,6 +189,7 @@
 		AE9D02A617A09FB500306CEC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AE9D02B717A09FB500306CEC /* MainStoryboard.storyboard */,
 				AE9D02BA17A09FB500306CEC /* FirstViewController.h */,
 				AE9D02C117A09FB500306CEC /* SecondViewController.h */,
 				AE9D02EF17A0B90600306CEC /* ThirdViewController.h */,

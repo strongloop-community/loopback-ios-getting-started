@@ -7,29 +7,31 @@
 //
 
 /*
-Tab 2, Step 2
-
-This Tab shows you how to Create Update and Delete Model types with an inheritance paradigm instead of functional blocks with Value Pairs
-
-Uncomment the code sections below to enable
-- Referesh
-- Create
-- Update
-- Delete
-
-You will need to have your Loopback Node server running
-
-You can start your Loopback Node server from the command line terminal with $slnode run app.js from within the loopback-nodejs-server/ folder
-*/
+ Tab 2, Step 2
+ 
+ This Tab shows you how to Create Update and Delete Model types with an inheritance paradigm instead of functional blocks with Value Pairs
+ 
+ Uncomment the code sections below to enable
+ - Referesh
+ - Create
+ - Update
+ - Delete
+ 
+ You will need to have your Loopback Node server running
+ 
+ You can start your Loopback Node server from the command line terminal with $slnode run app.js from within the loopback-nodejs-server/ folder
+ */
 
 
 #import "SecondViewController.h"
 #import "AppDelegate.h"
 
-//Local Objective C reporesentation of the our Mobile Model Object
+
+
+//Define a Local Objective C representation of the our LoopBack mobile model type
 @interface Car : LBModel
 @property (nonatomic, copy) NSString *name;
-@property (nonatomic) NSNumber *milage;
+@property (nonatomic) NSNumber *yack;
 @property (nonatomic) NSNumber *yack2;
 @end
 
@@ -45,8 +47,6 @@ You can start your Loopback Node server from the command line terminal with $sln
 @end
 
 
-
-
 @interface SecondViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *myTableView;
 @property (weak, nonatomic) LBRESTAdapter *adapter;
@@ -60,8 +60,6 @@ You can start your Loopback Node server from the command line terminal with $sln
 
 - (LBRESTAdapter *) adapter
 {
-    // cd /Users/mattschmulen/nodelife/strongloop/strongloop-community/loopback-ios-hello-node/loopback-nodejs-server
-    // slnode run app.js
     if( !_adapter)
         _adapter = [LBRESTAdapter adapterWithURL:[NSURL URLWithString:@"http://localhost:3000"]];
     return _adapter;
@@ -70,10 +68,9 @@ You can start your Loopback Node server from the command line terminal with $sln
 - (CarPrototype *) prototypeObjectReference
 {
     if (!_prototypeObjectReference)
-          _prototypeObjectReference = (CarPrototype *)[_adapter prototypeWithClass:[CarPrototype class]];
+        _prototypeObjectReference = (CarPrototype *)[_adapter prototypeWithClass:[CarPrototype class]];
     return _prototypeObjectReference;
 }
-
 
 - (NSArray *) tableData
 {
@@ -81,10 +78,8 @@ You can start your Loopback Node server from the command line terminal with $sln
     return _tableData;
 };
 
-
 - ( void ) getModels
 {
-    NSLog( @"getModels  " );
     void (^loadFailBlock)(NSError *) = ^(NSError *error) {
         [AppDelegate showGuideMessage: @"No Server Found"];
     };//end selfFailblock
@@ -108,23 +103,23 @@ You can start your Loopback Node server from the command line terminal with $sln
     NSLog( @"CreateNew Model and push to the server");
     
     void (^saveNewFailBlock)(NSError *) = ^(NSError *error) {
-       [AppDelegate showGuideMessage: @"No Server Found"];
+        [AppDelegate showGuideMessage: @"No Server Found"];
     };
     
     /*
-    LBModelPrototype *prototype = [self.adapter prototypeWithName:@"products"];
-    LBModel *model = [prototype modelWithDictionary:@{ @"name": @"My New Product" }];
-    NSLog( @"Created new model with property name %@ ,created ",  [NSString stringWithFormat:[model objectForKeyedSubscript:@"name"]] );
+     LBModelPrototype *prototype = [self.adapter prototypeWithName:@"products"];
+     LBModel *model = [prototype modelWithDictionary:@{ @"name": @"My New Product" }];
+     NSLog( @"Created new model with property name %@ ,created ",  [NSString stringWithFormat:[model objectForKeyedSubscript:@"name"]] );
+     
+     //save the model back to the server
+     
+     void (^saveNewSuccessBlock)() = ^() {
+     NSLog( @"Sav Success !" );//model.count);
+     };
+     [model saveWithSuccess:saveNewSuccessBlock failure:saveNewFailBlock];
+     */
     
-    //save the model back to the server
-   
-    void (^saveNewSuccessBlock)() = ^() {
-        NSLog( @"Sav Success !" );//model.count);
-    };
-    [model saveWithSuccess:saveNewSuccessBlock failure:saveNewFailBlock];
-    */
-    
-    Car *modelInstance = (Car*)[self.prototypeObjectReference modelWithDictionary:@{ @"name": @"BWM", @"milage": @111 }];
+    Car *modelInstance = (Car*)[self.prototypeObjectReference modelWithDictionary:@{ @"name": @"BWM", @"inventory": @1 }];
     
     NSLog( @"Created local Object %@", modelInstance.name );
     modelInstance.name = @"camero";
@@ -137,7 +132,13 @@ You can start your Loopback Node server from the command line terminal with $sln
         NSLog( @"Save Success %@", modelInstance.name );
         //lastId = model._id;
         //STAssertNotNil(model._id, @"Invalid id");
+        
+        // call a 'local' refresh to update the tableView
+        [self getModels];
+        
     } failure:saveNewFailBlock];
+    
+    //[ modelInstance invokeMethod:@"custommethod" parameters:<#(NSDictionary *)#> success:<#^(id value)success#> failure:<#^(NSError *error)failure#>]
     
 }//end createNewModuleAndPushToServer
 
@@ -184,36 +185,34 @@ You can start your Loopback Node server from the command line terminal with $sln
     
     if ( [[ [self.tableData objectAtIndex:indexPath.row] class] isSubclassOfClass:[LBModel class]])
     {
-        Car *modelInstance = (Car*)[self.tableData objectAtIndex:indexPath.row];
-        
-        //LBModel *model = (LBModel *)[self.tableData objectAtIndex:indexPath.row];
-        //cell.textLabel.text = model[@"name"]; //[model objectForKeyedSubscript:@"name"];
-        cell.textLabel.text = [[NSString alloc] initWithFormat:@"%@ - %@", modelInstance.name, [ modelInstance.milage stringValue] ];
+        LBModel *model = (LBModel *)[self.tableData objectAtIndex:indexPath.row];
+        cell.textLabel.text = model[@"name"]; //[model objectForKeyedSubscript:@"name"];
+        //cell.textLabel.text = [[NSString alloc] initWithFormat:@"%@ - %@", modelInstance.name, [ modelInstance.milage stringValue] ];
     }
     return cell;
-
+    
     
     
     /*
-    static NSString *simpleTableIdentifier = @"SimpleTableItem";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-    
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
-    }
-    
-    //cell.textLabel.text = [self.tableData objectAtIndex:indexPath.row];
-    if ( [[ [self.tableData objectAtIndex:indexPath.row] class] isSubclassOfClass:[LBModel class]])
-    {
-        LBModel *model = (LBModel *)[self.tableData objectAtIndex:indexPath.row];
-        //NSLog( [NSString stringWithFormat:[model objectAtKeyedSubscript:@"name"]] );
-        //cell.textLabel.text = [NSString stringWithFormat:[model objectForKeyedSubscript:@"name"]];
-        cell.textLabel.text = model[@"city"];
-        cell.textLabel.text = [model objectForKeyedSubscript:@"city"];
-        
-    }
-    return cell;
+     static NSString *simpleTableIdentifier = @"SimpleTableItem";
+     
+     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+     
+     if (cell == nil) {
+     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
+     }
+     
+     //cell.textLabel.text = [self.tableData objectAtIndex:indexPath.row];
+     if ( [[ [self.tableData objectAtIndex:indexPath.row] class] isSubclassOfClass:[LBModel class]])
+     {
+     LBModel *model = (LBModel *)[self.tableData objectAtIndex:indexPath.row];
+     //NSLog( [NSString stringWithFormat:[model objectAtKeyedSubscript:@"name"]] );
+     //cell.textLabel.text = [NSString stringWithFormat:[model objectForKeyedSubscript:@"name"]];
+     cell.textLabel.text = model[@"city"];
+     cell.textLabel.text = [model objectForKeyedSubscript:@"city"];
+     
+     }
+     return cell;
      */
 }
 

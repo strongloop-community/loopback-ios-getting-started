@@ -31,37 +31,38 @@
     // ++++++++++++++++++++++++++++++++++++
     
     // Define the load error functional block
-    void (^loadErrorBlock)(NSError *) = ^(NSError *error) {
+    void (^staticMethodErrorBlock)(NSError *) = ^(NSError *error) {
         NSLog( @"Error %@", error.description);
         [AppDelegate showGuideMessage: @"No Server Found"];
         //[[[UIApplication sharedApplication] delegate] showGuideMessage:@"No Server Found"];
     };//end selfFailblock
     
     // Define the load success block for the LBModelPrototype allWithSuccess message
-    void (^loadSuccessBlock)(NSArray *) = ^(NSArray *models) {
-        NSLog( @"selfSuccessBlock %d", models.count);
+    void (^staticMethodSuccessBlock)() = ^( ) {
+        //NSLog( @"selfSuccessBlock %d", models.count);
         //self.tableData  = models;
         //[self.myTableView reloadData];
         // [self showGuideMessage:@"Great! you just pulled code from node"];
     };//end selfSuccessBlock
     
     //Get a local representation of the 'products' model type
-    LBModelPrototype *objectB = [self.adapter prototypeWithName:@"products"];
+    LBModelPrototype *objectB = [self.adapter prototypeWithName:@"cars"];
     
     // Invoke the allWithSuccess message for the 'products' LBModelPrototype
     // Equivalent http JSON endpoint request : http://localhost:3000/products
     
-    [objectB allWithSuccess: loadSuccessBlock failure: loadErrorBlock];
+    //http://localhost:3000/cars/custommethod?arg1=yack&arg2=123
+    //[objectB invokeStaticMethod:@"custommethod" parameters:@{@"arg1":@"yack" , @"arg2":@123} success:staticMethodSuccessBlock failure:staticMethodErrorBlock ];
+    
+    
+    //[objectB allWithSuccess: loadSuccessBlock failure: loadErrorBlock];
     //[objectB custommethod: @"yack" loadSuccessBlock failure: loadErrorBlock];
 }
 
 - (IBAction)actionMethod2:(id)sender {
     
-    
 }
-
 - (IBAction)actionMethod3:(id)sender {
-    
     
 }
 

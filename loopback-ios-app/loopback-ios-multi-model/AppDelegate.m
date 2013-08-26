@@ -51,11 +51,24 @@
 + (void) showGuideMessage : ( NSString *) message
 {
     NSMutableDictionary *_guide = [[NSMutableDictionary alloc] init];
-    
+
     [_guide setObject:@"Welcome to the StrongLoop ! node.js for Mobile Developers 'hello Node' App" forKey:@"Welcome"];
     
     //Tab1
-    [_guide setObject:@"Get Started by uncommenting the code in 'FirstViewController.m' to Create Update and Delete models from the node server" forKey:@"Tab 'One' Step1"];
+    [_guide setObject:@"Get Started by removing the comment blocks in 'FirstViewController.m' to Create Update and Delete models from the node server" forKey:@"Tab 'One' Step1"];
+    
+    // Step 1: uncomment reminders
+    [_guide setObject:@"No Models found, did you uncomment the commented code in '- ( void ) getModels' in 'FirstViewController.m' ?" forKey:@"Step1 uncomment getModels"];
+    [_guide setObject:@"Dont forget to remove the //* comment blocks in '- ( void ) createNewModel' in 'FirstViewController.m' " forKey:@"Step1 uncomment createNewModel"];
+    [_guide setObject:@"Dont forget to remove the //* comment blocks in '- ( void ) updateExistingModel' in 'FirstViewController.m' " forKey:@"Step1 uncomment updateExistingModel"];
+    [_guide setObject:@"Dont forget to remove the //* comment blocks in '- ( void ) deleteExistingModel' in 'FirstViewController.m' " forKey:@"Step1 uncomment deleteExistingModel"];
+    
+    //Success Messages
+    [_guide setObject:@"Congradulations you created a model instance on the server, press 'Referesh' to update the local Table View " forKey:@"Tab 'One' CreateSuccess"];
+    [_guide setObject:@"Congradulations you updated a model instance on the server, press 'Referesh' to update the local Table View " forKey:@"Tab 'One' UpdateSuccess"];
+    [_guide setObject:@"Congradulations you deleted a model instance on the server, press 'Referesh' to update the local Table View " forKey:@"Tab 'One' DeleteSuccess"];
+    
+    
     
     //Tab2
     [_guide setObject:@"For this step uncomment the first comment block in app.js to publish a new set of models" forKey:@"Tab 'Two' Step2"];
@@ -76,6 +89,9 @@
     
     
     [_guide setObject:@"Does'nt look like your server is running. From the node-server folder start the server with \n'slnode run app.js'\n and try again " forKey:@"No Server Found"];
+    
+    
+    
     
     NSLog(@"Message: %@", [   _guide objectForKey:message]);
     
