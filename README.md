@@ -12,6 +12,6 @@ Welcome To Get started
 
 3. Run the Sample iOS Application CMD-R
 
-
+4. Follow the instructions provided by the App , start by pressing the "Start with the next Tab" button
 
 
