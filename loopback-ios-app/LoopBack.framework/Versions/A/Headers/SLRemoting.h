@@ -1,10 +1,9 @@
-//
-//  SLRemoting.h
-//  SLRemoting
-//
-//  Created by Michael Schoonmaker on 6/3/13.
-//  Copyright (c) 2013 StrongLoop. All rights reserved.
-//
+/**
+ * @file SLRemoting.h
+ *
+ * @author Michael Schoonmaker
+ * @copyright (c) 2013 StrongLoop. All rights reserved.
+ */
 
 #ifndef __SL_REMOTING_H
 #define __SL_REMOTING_H
