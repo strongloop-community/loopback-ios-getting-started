@@ -1,3 +1,0 @@
-{
-  "name": "loopback-sample-app"
-}
