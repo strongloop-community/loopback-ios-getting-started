@@ -56,10 +56,6 @@
 
 - ( void ) getModels
 {
-    // ++++++++++++++++++++++++++++++++++++
-    // Remove the Comment below to pull model instances from the server
-    // ++++++++++++++++++++++++++++++++++++
-    /*
     // Define the load error functional block
     void (^loadErrorBlock)(NSError *) = ^(NSError *error) {
         NSLog( @"Error %@", error.description);
@@ -73,16 +69,15 @@
         [self.myTableView reloadData];
         // [self showGuideMessage:@"Great! you just pulled code from node"];
     };//end selfSuccessBlock
-    
-    //Get a local representation of the 'products' model type
-    LBModelPrototype *objectB = [self.adapter prototypeWithName:@"products"];
-    
-    // Invoke the allWithSuccess message for the 'products' LBModelPrototype
-    // Equivalent http JSON endpoint request : http://localhost:3000/products
-    
+
+    //Get a local representation of the 'weapons' model type
+    LBModelPrototype *objectB = [self.adapter prototypeWithName:@"weapons"];
+
+    // Invoke the allWithSuccess message for the 'weapons' LBModelPrototype
+    // Equivalent http JSON endpoint request : http://localhost:3000/weapons
+
     [objectB allWithSuccess: loadSuccessBlock failure: loadErrorBlock];
     return;
-    */
     
     [AppDelegate showGuideMessage: @"Step1 uncomment getModels"];
 };
@@ -90,16 +85,12 @@
 
 - ( void ) createNewModel
 {
-    // ++++++++++++++++++++++++++++++++++++
-    // Remove the Comment below to create a new model instance on the server
-    // ++++++++++++++++++++++++++++++++++++
-    /*
-    //Get a local representation of the 'products' model type
-    LBModelPrototype *prototype = [self.adapter prototypeWithName:@"products"];
-    
+    //Get a local representation of the 'weapons' model type
+    LBModelPrototype *prototype = [self.adapter prototypeWithName:@"weapons"];
+
     //create new LBModel of type
-    LBModel *model = [prototype modelWithDictionary:@{ @"name": @"new product", @"inventory" : @99 }];
-    
+    LBModel *model = [prototype modelWithDictionary:@{ @"name": @"New weapon", @"effectiveRange" : @99 }];
+
     // Define the load error functional block
     void (^saveNewErrorBlock)(NSError *) = ^(NSError *error) {
         NSLog( @"Error on Save %@", error.description);
@@ -117,21 +108,12 @@
     //Persist the newly created Model to the LoopBack node server
     [model saveWithSuccess:saveNewSuccessBlock failure:saveNewErrorBlock];
     return;
-    */    
     
     [AppDelegate showGuideMessage: @"Step1 uncomment createNewModel"];
 };
 
 - ( void ) updateExistingModel
 {
-    // ++++++++++++++++++++++++++++++++++++
-    // Remove the Comment below to 'Update' an existing model instance on the server
-    // with a new paramater variable that is defined by the mobile client
-    //
-    // The ability to define your mobile schema from them mobile client allows your mobile client to create
-    // new undefined parameter schemas easily through your mobile application dev cycle.
-    // ++++++++++++++++++++++++++++++++++++
-    /*
     // Define the find error functional block
     void (^findErrorBlock)(NSError *) = ^(NSError *error) {
         NSLog( @"Error No model found with ID %@", error.description);
@@ -141,8 +123,8 @@
     // Define your success functional block
     void (^findSuccessBlock)(LBModel *) = ^(LBModel *model) {
         //dynamically add an 'inventory' variable to this model type before saving it to the server
-        model[@"inventory"] = @"22";
-        
+        model[@"effectiveRange"] = @"22";
+
         //Define the save error block
         void (^saveErrorBlock)(NSError *) = ^(NSError *error) {
             NSLog( @"Error on Save %@", error.description);
@@ -155,15 +137,14 @@
         };
         [model saveWithSuccess:saveSuccessBlock failure:saveErrorBlock];
     };
-    
-    //Get a local representation of the 'products' model type
-    LBModelPrototype *prototype = [self.adapter prototypeWithName:@"products"];
-    
+
+    //Get a local representation of the 'weapons' model type
+    LBModelPrototype *prototype = [self.adapter prototypeWithName:@"weapons"];
+
     //Get the instance of the model with ID = 2
-    // Equivalent http JSON endpoint request : http://localhost:3000/products/2
+    // Equivalent http JSON endpoint request : http://localhost:3000/weapons/2
     [prototype findWithId:@2 success:findSuccessBlock failure:findErrorBlock ];
     return;
-    */
     
     
     [AppDelegate showGuideMessage: @"Step1 uncomment updateExistingModel"];
@@ -171,10 +152,6 @@
 
 - ( void ) deleteExistingModel
 {
-    // ++++++++++++++++++++++++++++++++++++
-    // Remove the Comment below to denable the delete button to remove a model instances from the server
-    // ++++++++++++++++++++++++++++++++++++
-    /*
     // Define the find error functional block
     void (^findErrorBlock)(NSError *) = ^(NSError *error) {
         NSLog( @"Error No model found with ID %@", error.description);
@@ -198,15 +175,14 @@
         //Destroy this model instance on the LoopBack node server
         [ model destroyWithSuccess:removeSuccessBlock failure:removeErrorBlock ];
     };
-    
-    //Get a local representation of the 'products' model type
-    LBModelPrototype *prototype = [self.adapter prototypeWithName:@"products"];
-    
+
+    //Get a local representation of the 'weapons' model type
+    LBModelPrototype *prototype = [self.adapter prototypeWithName:@"weapons"];
+
     //Get the instance of the model with ID = 2
-    // Equivalent http JSON endpoint request : http://localhost:3000/products/2
+    // Equivalent http JSON endpoint request : http://localhost:3000/weapons/2
     [prototype findWithId:@2 success:findSuccessBlock failure:findErrorBlock ];
     return;
-    */
     
     [AppDelegate showGuideMessage: @"Step1 uncomment deleteExistingModel"];
 }//end deleteExistingModel
@@ -247,9 +223,9 @@
     {
         LBModel *model = (LBModel *)[self.tableData objectAtIndex:indexPath.row];
         //cell.textLabel.text = model[@"name"]; // [model objectForKeyedSubscript:@"name"];
-        cell.textLabel.text = [[NSString alloc] initWithFormat:@"%@ - %@",
+        cell.textLabel.text = [[NSString alloc] initWithFormat:@"%@ - %@m",
                                [model objectForKeyedSubscript:@"name"] ,
-                               (int)[model objectForKeyedSubscript:@"inventory"] ];
+                               (int)[model objectForKeyedSubscript:@"effectiveRange"] ];
     }
     return cell;
 }

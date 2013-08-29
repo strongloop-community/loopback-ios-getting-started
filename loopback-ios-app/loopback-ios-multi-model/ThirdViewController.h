@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <LoopBack/LoopBack.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface ThirdViewController : UIViewController
+@interface ThirdViewController : UIViewController<CLLocationManagerDelegate>
 
 @end

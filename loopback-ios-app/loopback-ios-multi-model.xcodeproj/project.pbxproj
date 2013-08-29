@@ -48,6 +48,7 @@
 		AEC5816D17BD3E3600DDA22C /* wip.png in Resources */ = {isa = PBXBuildFile; fileRef = AEC5816B17BD3E3600DDA22C /* wip.png */; };
 		AEC5816E17BD3E3600DDA22C /* wip@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AEC5816C17BD3E3600DDA22C /* wip@2x.png */; };
 		B3EE1C0117CE9D15001ECC06 /* LoopBack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3EE1C0017CE9D15001ECC06 /* LoopBack.framework */; };
+		B3EE1C0317CFE6DC001ECC06 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3EE1C0217CFE6DC001ECC06 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +113,7 @@
 		AEC5816B17BD3E3600DDA22C /* wip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wip.png; sourceTree = "<group>"; };
 		AEC5816C17BD3E3600DDA22C /* wip@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wip@2x.png"; sourceTree = "<group>"; };
 		B3EE1C0017CE9D15001ECC06 /* LoopBack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LoopBack.framework; sourceTree = "<group>"; };
+		B3EE1C0217CFE6DC001ECC06 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 				AE9D02A017A09FB500306CEC /* UIKit.framework in Frameworks */,
 				AE9D02A217A09FB500306CEC /* Foundation.framework in Frameworks */,
 				AE9D02A417A09FB500306CEC /* CoreGraphics.framework in Frameworks */,
+				B3EE1C0317CFE6DC001ECC06 /* CoreLocation.framework in Frameworks */,
 				B3EE1C0117CE9D15001ECC06 /* LoopBack.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -161,6 +164,7 @@
 		AE9D029E17A09FB500306CEC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B3EE1C0217CFE6DC001ECC06 /* CoreLocation.framework */,
 				B3EE1C0017CE9D15001ECC06 /* LoopBack.framework */,
 				AE9D029F17A09FB500306CEC /* UIKit.framework */,
 				AE9D02A117A09FB500306CEC /* Foundation.framework */,

@@ -29,28 +29,28 @@
 
 
 //Define a Local Objective C representation of the our LoopBack mobile model type
-@interface Car : LBModel
+@interface Ammo : LBModel
 @property (nonatomic, copy) NSString *name;
-@property (nonatomic) NSNumber *yack;
-@property (nonatomic) NSNumber *yack2;
+@property (nonatomic) NSNumber *caliber;
+@property (nonatomic, copy) NSString *caliberUnit;
 @end
 
-@implementation Car
+@implementation Ammo
 @end
 
-@interface CarPrototype : LBModelPrototype
+@interface AmmoPrototype : LBModelPrototype
 + (instancetype)prototype;
 @end
 
-@implementation CarPrototype
-+ (instancetype)prototype { return [self prototypeWithName:@"cars"]; }
+@implementation AmmoPrototype
++ (instancetype)prototype { return [self prototypeWithName:@"ammo"]; }
 @end
 
 
 @interface SecondViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *myTableView;
 @property (weak, nonatomic) LBRESTAdapter *adapter;
-@property (weak, nonatomic) CarPrototype *prototypeObjectReference;
+@property (weak, nonatomic) AmmoPrototype *prototypeObjectReference;
 @property (strong, nonatomic) NSArray *tableData;
 @property (strong, nonatomic) NSMutableDictionary *guide;
 @end
@@ -65,10 +65,10 @@
     return _adapter;
 }
 
-- (CarPrototype *) prototypeObjectReference
+- (AmmoPrototype *) prototypeObjectReference
 {
     if (!_prototypeObjectReference)
-        _prototypeObjectReference = (CarPrototype *)[_adapter prototypeWithClass:[CarPrototype class]];
+        _prototypeObjectReference = (AmmoPrototype *)[_adapter prototypeWithClass:[AmmoPrototype class]];
     return _prototypeObjectReference;
 }
 
@@ -83,11 +83,11 @@
     void (^loadFailBlock)(NSError *) = ^(NSError *error) {
         [AppDelegate showGuideMessage: @"No Server Found"];
     };//end selfFailblock
-    
-    LBModelPrototype *objectB = [self.adapter prototypeWithName:@"cars"];
-    
-    // Invoke the allWithSuccess message for the 'cars' LBModelPrototype
-    // Equivalent http JSON endpoint request : http://localhost:3000/cars
+
+    LBModelPrototype *objectB = [self.adapter prototypeWithName:@"ammo"];
+
+    // Invoke the allWithSuccess message for the 'ammo' LBModelPrototype
+    // Equivalent http JSON endpoint request : http://localhost:3000/ammo
     [ self.prototypeObjectReference allWithSuccess:^(NSArray *models) {
         NSLog( @"Success %d", [models count]);
         
@@ -105,26 +105,26 @@
     void (^saveNewFailBlock)(NSError *) = ^(NSError *error) {
         [AppDelegate showGuideMessage: @"No Server Found"];
     };
-    
-    /*
-     LBModelPrototype *prototype = [self.adapter prototypeWithName:@"products"];
-     LBModel *model = [prototype modelWithDictionary:@{ @"name": @"My New Product" }];
-     NSLog( @"Created new model with property name %@ ,created ",  [NSString stringWithFormat:[model objectForKeyedSubscript:@"name"]] );
-     
-     //save the model back to the server
-     
-     void (^saveNewSuccessBlock)() = ^() {
-     NSLog( @"Sav Success !" );//model.count);
-     };
-     [model saveWithSuccess:saveNewSuccessBlock failure:saveNewFailBlock];
-     */
-    
-    Car *modelInstance = (Car*)[self.prototypeObjectReference modelWithDictionary:@{ @"name": @"BWM", @"inventory": @1 }];
-    
+
+    LBModelPrototype *prototype = [self.adapter prototypeWithName:@"weapons"];
+    LBModel *model = [prototype modelWithDictionary:@{ @"name": @"New weapon" }];
+    NSLog( @"Created new model with property name %@ ,created ",  [NSString stringWithFormat:[model objectForKeyedSubscript:@"name"]] );
+
+    //save the model back to the server
+
+    void (^saveNewSuccessBlock)() = ^() {
+        NSLog( @"Sav Success !" );//model.count);
+    };
+    [model saveWithSuccess:saveNewSuccessBlock failure:saveNewFailBlock];
+
+    Ammo *modelInstance = (Ammo*)[self.prototypeObjectReference modelWithDictionary:@{ }];
+
     NSLog( @"Created local Object %@", modelInstance.name );
-    modelInstance.name = @"camero";
-    NSLog( @"Created local Object %@", modelInstance.name );
-    
+    modelInstance.name = @"MP5 Milspec";
+    modelInstance.caliber = @9;
+    modelInstance.caliberUnit = @"mm";
+    NSLog( @"Created local Object %@", [modelInstance toDictionary]);
+
     //STAssertEqualObjects(model.bars, @1, @"Invalid bars.");
     //STAssertNil(model._id, nil, @"Invalid id");
     
