@@ -19,6 +19,9 @@
     // server - create as many Adapters as you need.
     self.adapter = [LBRESTAdapter adapterWithURL:[NSURL URLWithString:settings[@"RootPath"]]];
 
+    // This boilerplate is required for Lesson Three.
+    [self.adapter.contract addItem:[SLRESTContractItem itemWithPattern:@"locations/nearby" verb:@"GET"] forMethod:@"locations.nearby"];
+
     return YES;
 }
 

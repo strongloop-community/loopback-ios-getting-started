@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
 @interface LessonThreeView : UIView
+
+@property (strong, nonatomic) IBOutlet MKMapView *map;
 
 - (IBAction)sendRequest:(id)sender;
 
