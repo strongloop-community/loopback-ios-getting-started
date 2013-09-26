@@ -14,10 +14,10 @@
 		B359FE5F17F3D04E00DEE9E6 /* LessonThreeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B359FE5E17F3D04E00DEE9E6 /* LessonThreeView.xib */; };
 		B359FE6217F3D06200DEE9E6 /* LessonThreeView.m in Sources */ = {isa = PBXBuildFile; fileRef = B359FE6117F3D06200DEE9E6 /* LessonThreeView.m */; };
 		B359FE6417F3D45700DEE9E6 /* BackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B359FE6317F3D45700DEE9E6 /* BackView.xib */; };
-		B359FE9B17F3EFBA00DEE9E6 /* LessonTwoTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B359FE9A17F3EFBA00DEE9E6 /* LessonTwoTableCell.xib */; };
+		B359FE9D17F3F9F900DEE9E6 /* LessonTwoTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B359FE9C17F3F9F900DEE9E6 /* LessonTwoTableCell.xib */; };
+		B359FEAA17F4067400DEE9E6 /* LoopBack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B359FEA917F4067400DEE9E6 /* LoopBack.framework */; };
 		B37124DB17F3AD6300E18AED /* LessonOneView.m in Sources */ = {isa = PBXBuildFile; fileRef = B37124DA17F3AD6300E18AED /* LessonOneView.m */; };
 		B37124DD17F3AD6F00E18AED /* LessonOneView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B37124DC17F3AD6F00E18AED /* LessonOneView.xib */; };
-		B37124E017F3AE6900E18AED /* LoopBack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B37124DF17F3AE6900E18AED /* LoopBack.framework */; };
 		B37124E217F3AE9500E18AED /* FinaleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B37124E117F3AE9500E18AED /* FinaleView.xib */; };
 		B37124E417F3B05700E18AED /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = B37124E317F3B05700E18AED /* Settings.plist */; };
 		B3FC64CD17F39CCE00D3C066 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3FC64CC17F39CCE00D3C066 /* UIKit.framework */; };
@@ -47,11 +47,11 @@
 		B359FE6017F3D06200DEE9E6 /* LessonThreeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LessonThreeView.h; sourceTree = "<group>"; };
 		B359FE6117F3D06200DEE9E6 /* LessonThreeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LessonThreeView.m; sourceTree = "<group>"; };
 		B359FE6317F3D45700DEE9E6 /* BackView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BackView.xib; sourceTree = "<group>"; };
-		B359FE9A17F3EFBA00DEE9E6 /* LessonTwoTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LessonTwoTableCell.xib; sourceTree = "<group>"; };
+		B359FE9C17F3F9F900DEE9E6 /* LessonTwoTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LessonTwoTableCell.xib; sourceTree = "<group>"; };
+		B359FEA917F4067400DEE9E6 /* LoopBack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LoopBack.framework; sourceTree = "<group>"; };
 		B37124D917F3AD6300E18AED /* LessonOneView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LessonOneView.h; sourceTree = "<group>"; };
 		B37124DA17F3AD6300E18AED /* LessonOneView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LessonOneView.m; sourceTree = "<group>"; };
 		B37124DC17F3AD6F00E18AED /* LessonOneView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LessonOneView.xib; sourceTree = "<group>"; };
-		B37124DF17F3AE6900E18AED /* LoopBack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LoopBack.framework; sourceTree = "<group>"; };
 		B37124E117F3AE9500E18AED /* FinaleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FinaleView.xib; sourceTree = "<group>"; };
 		B37124E317F3B05700E18AED /* Settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Settings.plist; sourceTree = "<group>"; };
 		B3FC64C917F39CCE00D3C066 /* LoopBackGuideApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoopBackGuideApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -86,7 +86,7 @@
 				B3FC64CD17F39CCE00D3C066 /* UIKit.framework in Frameworks */,
 				B3FC64CF17F39CCE00D3C066 /* Foundation.framework in Frameworks */,
 				B3FC64D117F39CCE00D3C066 /* CoreGraphics.framework in Frameworks */,
-				B37124E017F3AE6900E18AED /* LoopBack.framework in Frameworks */,
+				B359FEAA17F4067400DEE9E6 /* LoopBack.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,7 +131,7 @@
 		B3FC64CB17F39CCE00D3C066 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B37124DF17F3AE6900E18AED /* LoopBack.framework */,
+				B359FEA917F4067400DEE9E6 /* LoopBack.framework */,
 				B3FC64CC17F39CCE00D3C066 /* UIKit.framework */,
 				B3FC64CE17F39CCE00D3C066 /* Foundation.framework */,
 				B3FC64D017F39CCE00D3C066 /* CoreGraphics.framework */,
@@ -175,7 +175,7 @@
 				B359FE5917F3CFF700DEE9E6 /* LessonTwoView.h */,
 				B359FE5A17F3CFF700DEE9E6 /* LessonTwoView.m */,
 				B359FE5C17F3D00400DEE9E6 /* LessonTwoView.xib */,
-				B359FE9A17F3EFBA00DEE9E6 /* LessonTwoTableCell.xib */,
+				B359FE9C17F3F9F900DEE9E6 /* LessonTwoTableCell.xib */,
 				B359FE6017F3D06200DEE9E6 /* LessonThreeView.h */,
 				B359FE6117F3D06200DEE9E6 /* LessonThreeView.m */,
 				B359FE5E17F3D04E00DEE9E6 /* LessonThreeView.xib */,
@@ -251,7 +251,7 @@
 				B359FE5D17F3D00400DEE9E6 /* LessonTwoView.xib in Resources */,
 				B359FE5F17F3D04E00DEE9E6 /* LessonThreeView.xib in Resources */,
 				B359FE6417F3D45700DEE9E6 /* BackView.xib in Resources */,
-				B359FE9B17F3EFBA00DEE9E6 /* LessonTwoTableCell.xib in Resources */,
+				B359FE9D17F3F9F900DEE9E6 /* LessonTwoTableCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
