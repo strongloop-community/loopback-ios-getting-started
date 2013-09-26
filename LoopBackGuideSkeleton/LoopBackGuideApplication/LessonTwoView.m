@@ -60,12 +60,19 @@
 //    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     UITableViewCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"LessonTwoTableCell" owner:self options:nil] objectAtIndex:0];
 
-    WeaponModel *model = (WeaponModel *)self.weapons[indexPath.row];
+    NSString *name = @"";
+    NSNumber *range = @0;
 
-    cell.textLabel.text = model.name;
 
-    if ([model.effectiveRange isKindOfClass:[NSNumber class]]) {
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@m", model.effectiveRange];
+    /**
+     * Here, you should set `name` and `range` to the two properties from your model subclass.
+     */
+
+
+    cell.textLabel.text = name;
+
+    if ([range isKindOfClass:[NSNumber class]]) {
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@m", range];
     } else {
         cell.detailTextLabel.text = @"-";
     }
