@@ -12,50 +12,11 @@
 
 #import "AppDelegate.h"
 
-/**
- * Unlike Lesson One, our WeaponModel class is based _entirely_ on an existing schema.
- *
- * In this case, every field in Oracle that's defined as a NUMBER type becomes an NSNumber,
- * and each field defined as a VARCHAR2 becomes an NSString.
- *
- * When we load these models from Oracle, LoopBack uses these @property declarations to know
- * what data we care about. If we left off `extras`, for example, LoopBack would simply omit
- * that field.
- */
-@interface WeaponModel : LBModel
-
-@property (nonatomic, copy) NSString *id;
-@property (nonatomic, copy) NSString *name;
-@property (nonatomic, copy) NSNumber *audibleRange;
-@property (nonatomic, copy) NSNumber *effectiveRange;
-@property (nonatomic, copy) NSNumber *rounds;
-@property (nonatomic, copy) NSString *extras;
-@property (nonatomic, copy) NSString *fireModes;
-
-@end
-
-@implementation WeaponModel
-
-@end
 
 /**
- * Our custom ModelPrototype subclass. See Lesson One for more information.
+ * Insert custom subclasses of LBModel and LBModelPrototype here.
  */
-@interface WeaponModelPrototype : LBModelPrototype
 
-+ (instancetype)prototype;
-
-@end
-
-@implementation WeaponModelPrototype
-
-+ (instancetype)prototype {
-    WeaponModelPrototype *prototype = [self prototypeWithName:@"weapons"];
-    prototype.modelClass = [WeaponModel class];
-    return prototype;
-}
-
-@end
 
 /**
  * Private Intervace for Lesson Two: Existing Data? No Problem.
@@ -134,27 +95,13 @@
  * connecting a legacy model (e.g. this Weapon example) to an Oracle data source.
  */
 - (IBAction)sendRequest:(id)sender {
-    // 1. Grab the shared LBRESTAdapter instance.
-    LBRESTAdapter *adapter = ((AppDelegate *)[[UIApplication sharedApplication] delegate]).adapter;
 
-    // 2. Instantiate our AmmoModelPrototype. See LessonOneView for further discussion.
-    WeaponModelPrototype *prototype = (WeaponModelPrototype *)[adapter prototypeWithClass:[WeaponModelPrototype class]];
 
-    // 3. Rather than instantiate a model directly like we did in Lesson One, we'll query the server for
-    //    all Weapons, filling out our UITableView with the results. In this case, the Prototype is really
-    //    the workhorse; the Model is just a simple container.
-    [prototype allWithSuccess:^(NSArray *models) {
-        NSLog(@"Successfully loaded all Weapon models.");
-        self.weapons = models;
-        [self.resultsTable performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
-    } failure:^(NSError *error) {
-        NSLog(@"Failed to get all with %@", error);
-        [[[UIAlertView alloc] initWithTitle:@"Error"
-                                    message:[error localizedDescription]
-                                   delegate:nil
-                          cancelButtonTitle:@"Dismiss"
-                          otherButtonTitles:nil] show];
-    }];
+    /**
+     * Insert implementation here.
+     */
+
+    
 }
 
 @end
