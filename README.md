@@ -1,17 +1,27 @@
+# LoopBack Guide Application (for iOS)
 
+The LoopBack Guide Application provides an easy-to-digest example application
+from UI to data and back again.
 
-Welcome To Get started
+## Installation
 
-1. install the strongloop node distro on your local developer machine http://strongloop.com/products 
+The Guide assumes you have [XCode][xcode] installed and a running [Sample
+Application][strongnode] server.
 
-1. Open the Xcode Project loopback-ios-multi-model/loopback-ios-multi-model.xcodeproj
+ 1. Clone the Guide Application: `git clone https://github.com/strongloop/loopback-guide-app`
+ 1. Open the project: `open loopback-guide-app/LoopBackGuideApplication/LoopBackGuideApplication.xcodeproj/`
+ 1. Now in XCode, run the Application with `Cmd+R`.
 
-2. Start the Node Server 
-   $cd loopback-nodejs-server
-   $slnode run app.js
+## Using the Guide
 
-3. Run the Sample iOS Application CMD-R
+Once you have the Guide running, flip through the pages and familiarize yourself
+with what the app does. From there, dive into the Objective-C and see _how_ it
+does it. There are comments for everything.
 
-4. Follow the instructions provided by the App , start by pressing the "Start with the next Tab" button
+## Questions?
 
+Holler at us: [callback@strongloop.com][email]
 
+[xcode]: https://developer.apple.com/xcode/
+[strongnode]: http://docs.strongloop.com/strongnode/
+[email]: mailto:callback@strongloop.com
