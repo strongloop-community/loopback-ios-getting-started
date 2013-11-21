@@ -77,9 +77,9 @@
     // 1. Grab the shared LBRESTAdapter instance.
     LBRESTAdapter *adapter = ((AppDelegate *)[[UIApplication sharedApplication] delegate]).adapter;
 
-    // 2. Instantiate our ModelPrototype. Rather than create a subclass this time, we'll use the base
+    // 2. Instantiate our ModelRepository. Rather than create a subclass this time, we'll use the base
     //    classes to show off their off-the-shelf superpowers.
-    LBModelPrototype *prototype = [adapter prototypeWithName:@"locations"];
+    LBModelRepository *repository = [adapter repositoryForClassName:@"locations"];
 
     // 3. The meat of the lesson: custom behaviour. Here, we're invoking a custom, static method on
     //    the Location model type called "nearby". As you might expect, it does a geo-based query
@@ -89,7 +89,7 @@
     //
     //    Once we've successfully loaded the models, we pass them to our `addLocations:toMapView:`
     //    method to be converted to MKAnnotations and added to the map as clickable pins!
-    [prototype invokeStaticMethod:@"nearby"
+    [repository invokeStaticMethod:@"nearby"
                        parameters:@{
                               @"here": @{
                                   @"lat": @37.56572191237293,

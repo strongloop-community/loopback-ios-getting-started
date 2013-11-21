@@ -14,7 +14,7 @@
 
 
 /**
- * Insert custom subclasses of LBModel and LBModelPrototype here.
+ * Insert custom subclasses of LBModel and LBModelRepository here.
  */
 
 

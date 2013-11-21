@@ -39,20 +39,20 @@
 @end
 
 /**
- * Our custom ModelPrototype subclass. See Lesson One for more information.
+ * Our custom ModelRepository subclass. See Lesson One for more information.
  */
-@interface WeaponModelPrototype : LBModelPrototype
+@interface WeaponModelRepository : LBModelRepository
 
-+ (instancetype)prototype;
++ (instancetype)repository;
 
 @end
 
-@implementation WeaponModelPrototype
+@implementation WeaponModelRepository
 
-+ (instancetype)prototype {
-    WeaponModelPrototype *prototype = [self prototypeWithName:@"weapons"];
-    prototype.modelClass = [WeaponModel class];
-    return prototype;
++ (instancetype)repository {
+    WeaponModelRepository *repository = [self repositoryForClassName:@"weapons"];
+    repository.modelClass = [WeaponModel class];
+    return repository;
 }
 
 @end
@@ -137,13 +137,13 @@
     // 1. Grab the shared LBRESTAdapter instance.
     LBRESTAdapter *adapter = ((AppDelegate *)[[UIApplication sharedApplication] delegate]).adapter;
 
-    // 2. Instantiate our AmmoModelPrototype. See LessonOneView for further discussion.
-    WeaponModelPrototype *prototype = (WeaponModelPrototype *)[adapter prototypeWithClass:[WeaponModelPrototype class]];
+    // 2. Instantiate our AmmoModelRepository. See LessonOneView for further discussion.
+    WeaponModelRepository *repository = (WeaponModelRepository *)[adapter repositoryWithClass:[WeaponModelRepository class]];
 
     // 3. Rather than instantiate a model directly like we did in Lesson One, we'll query the server for
-    //    all Weapons, filling out our UITableView with the results. In this case, the Prototype is really
+    //    all Weapons, filling out our UITableView with the results. In this case, the Repository is really
     //    the workhorse; the Model is just a simple container.
-    [prototype allWithSuccess:^(NSArray *models) {
+    [repository allWithSuccess:^(NSArray *models) {
         NSLog(@"Successfully loaded all Weapon models.");
         self.weapons = models;
         [self.resultsTable performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];

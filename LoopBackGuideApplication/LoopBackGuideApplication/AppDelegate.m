@@ -7,11 +7,22 @@
 //
 
 #import "AppDelegate.h"
+#import "DeviceModel.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // Let the device know we want to receive push notifications
+	[[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+     (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+    
+    // Handle APN on Terminated state, app launched because of APN
+	NSDictionary *payload = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+    if (payload) {
+        NSLog(@"Payload from notification: %@", @"payload");
+    }
+
     NSDictionary *settings = [self loadSettings];
 
     // Instantiate the shared LBRESTAdapter. In most circumstances, you'll do this only once; putting that reference in a
@@ -51,6 +62,28 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+- (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
+{
+	NSLog(@"My token is: %@", deviceToken);
+    [DeviceModel register:deviceToken adapter:self.adapter];
+}
+
+- (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
+{
+	NSLog(@"Failed to get token, error: %@", error);
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    // Detect if APN is received on Background or Foreground state
+    if (application.applicationState == UIApplicationStateInactive) {
+        NSLog(@"Inactive - User info: %@", userInfo);
+    }
+    else if (application.applicationState == UIApplicationStateActive) {
+        NSLog(@"Active - User info: %@", userInfo);
+    }
+}
+
 
 - (NSDictionary *)loadSettings {
     NSString *path = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"Settings.plist"];

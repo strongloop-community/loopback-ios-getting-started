@@ -3,6 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>RootPath</key>
-	<string>http://localhost:3000</string>
+	<string>http://192.168.1.18:3000</string>
 </dict>
 </plist>
