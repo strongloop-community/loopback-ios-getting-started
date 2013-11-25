@@ -32,8 +32,8 @@
 @end
 
 /**
- * The LBModelPrototype provides an interface to the Model's "type" on the server. For instance, we'll
- * (SPOILER!) see in Lessons Two how the Prototype is used for queries; in Lesson Three we'll use it
+ * The LBModelRepository provides an interface to the Model's "type" on the server. For instance, we'll
+ * (SPOILER!) see in Lessons Two how the Repository is used for queries; in Lesson Three we'll use it
  * for custom, collection-level behaviour: those locations within the collection closest to the given
  * coordinates.
  *
@@ -41,18 +41,18 @@
  * between a LBRESTAdapter representing the _server_ and a named collection or type of model within it.
  * In this case, that type of model is named "ammo", and it contains AmmoModel instances.
  */
-@interface AmmoModelPrototype : LBModelPrototype
+@interface AmmoModelRepository : LBModelRepository
 
-+ (instancetype)prototype;
++ (instancetype)repository;
 
 @end
 
-@implementation AmmoModelPrototype
+@implementation AmmoModelRepository
 
-+ (instancetype)prototype {
-    AmmoModelPrototype *prototype = [self prototypeWithName:@"ammo"];
-    prototype.modelClass = [AmmoModel class];
-    return prototype;
++ (instancetype)repository {
+    AmmoModelRepository *repository = [self repositoryWithClassName:@"ammo"];
+    repository.modelClass = [AmmoModel class];
+    return repository;
 }
 
 @end
@@ -75,16 +75,16 @@
     // 1. Grab the shared LBRESTAdapter instance.
     LBRESTAdapter *adapter = ((AppDelegate *)[[UIApplication sharedApplication] delegate]).adapter;
 
-    // 2. Instantiate our AmmoModelPrototype. For the intrepid, notice that we could create this
+    // 2. Instantiate our AmmoModelRepository. For the intrepid, notice that we could create this
     //    once (say, in initWithFrame:) and use the same instance for every request. Additionally,
     //    the shared adapter is associated with the prototype, so we'd only have to do step 1 in
     //    initWithFrame: also. This more verbose version is presented as an example; making it more
     //    efficient is left as a rewarding exercise for the reader.
-    AmmoModelPrototype *prototype = (AmmoModelPrototype *)[adapter prototypeWithClass:[AmmoModelPrototype class]];
+    AmmoModelRepository *repository = (AmmoModelRepository *)[adapter repositoryWithModelClass:[AmmoModelRepository class]];
     
     // 3. From that prototype, create a new AmmoModel. We pass in an empty dictionary to defer setting
     //    any values.
-    AmmoModel *model = (AmmoModel *)[prototype modelWithDictionary:@{}];
+    AmmoModel *model = (AmmoModel *)[repository modelWithDictionary:@{}];
 
     // 4. Pull model values from the UI.
     model.name = self.nameField.text;
