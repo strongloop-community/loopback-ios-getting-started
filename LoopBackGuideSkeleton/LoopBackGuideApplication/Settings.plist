@@ -3,6 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>RootPath</key>
-	<string>http://localhost:3000</string>
+	<string>http://localhost:3000/api</string>
 </dict>
 </plist>

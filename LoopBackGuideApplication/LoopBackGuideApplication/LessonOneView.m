@@ -80,7 +80,7 @@
     //    the shared adapter is associated with the prototype, so we'd only have to do step 1 in
     //    initWithFrame: also. This more verbose version is presented as an example; making it more
     //    efficient is left as a rewarding exercise for the reader.
-    AmmoModelRepository *repository = (AmmoModelRepository *)[adapter repositoryWithModelClass:[AmmoModelRepository class]];
+    AmmoModelRepository *repository = (AmmoModelRepository *)[adapter repositoryWithClass:[AmmoModelRepository class]];
     
     // 3. From that prototype, create a new AmmoModel. We pass in an empty dictionary to defer setting
     //    any values.

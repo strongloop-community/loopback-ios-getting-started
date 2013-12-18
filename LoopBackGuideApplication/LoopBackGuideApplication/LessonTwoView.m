@@ -138,7 +138,7 @@
     LBRESTAdapter *adapter = ((AppDelegate *)[[UIApplication sharedApplication] delegate]).adapter;
 
     // 2. Instantiate our AmmoModelRepository. See LessonOneView for further discussion.
-    WeaponModelRepository *repository = (WeaponModelRepository *)[adapter repositoryWithModelClass:[WeaponModelRepository class]];
+    WeaponModelRepository *repository = (WeaponModelRepository *)[adapter repositoryWithClass:[WeaponModelRepository class]];
 
     // 3. Rather than instantiate a model directly like we did in Lesson One, we'll query the server for
     //    all Weapons, filling out our UITableView with the results. In this case, the Repository is really
