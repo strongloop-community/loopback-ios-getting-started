@@ -10,9 +10,9 @@
 
 @interface LessonOneView : UIView <UITextFieldDelegate>
 
-@property (strong, nonatomic) IBOutlet UITextField *nameField;
-@property (strong, nonatomic) IBOutlet UITextField *caliberField;
-@property (strong, nonatomic) IBOutlet UISwitch *armorPiercingSwitch;
+@property (strong, nonatomic) IBOutlet UITextField *userField;
+@property (strong, nonatomic) IBOutlet UITextField *commentField;
+@property (strong, nonatomic) IBOutlet UISwitch *reviewedSwitch;
 
 - (IBAction)sendRequest:(id)sender;
 

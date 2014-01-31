@@ -30,7 +30,7 @@
 }
 
 /**
- * Saves the desired Ammo model to the server with all values pulled from the UI.
+ * Saves the desired Note model to the server with all values pulled from the UI.
  */
 - (IBAction)sendRequest:(id)sender {
 
