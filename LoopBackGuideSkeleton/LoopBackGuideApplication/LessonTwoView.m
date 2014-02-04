@@ -23,7 +23,7 @@
  */
 @interface LessonTwoView()
 
-@property (strong, nonatomic) NSArray *weapons;
+@property (strong, nonatomic) NSArray *cars;
 
 @end
 
@@ -41,7 +41,7 @@
     self = [super initWithCoder:aDecoder];
 
     if (self) {
-        self.weapons = @[];
+        self.cars = @[];
 
 //        [self.resultsTable registerNib:[UINib nibWithNibName:@"LessonTwoTableCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"Cell"];
     }
@@ -53,15 +53,15 @@
  * Basic UITableViewDataSource implementation using our custom LBModel type.
  */
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.weapons.count;
+    return self.cars.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 //    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     UITableViewCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"LessonTwoTableCell" owner:self options:nil] objectAtIndex:0];
 
-    NSString *name = @"";
-    NSNumber *range = @0;
+    NSString *model = @"";
+    NSNumber *year = @0;
 
 
     /**
@@ -69,10 +69,10 @@
      */
 
 
-    cell.textLabel.text = name;
+    cell.textLabel.text = model;
 
-    if ([range isKindOfClass:[NSNumber class]]) {
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@m", range];
+    if ([year isKindOfClass:[NSNumber class]]) {
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", year];
     } else {
         cell.detailTextLabel.text = @"-";
     }
@@ -85,7 +85,7 @@
 }
 
 /**
- * Loads all Weapon models from the server. To make full use of this, return to your (running) Sample Application
+ * Loads all Car models from the server. To make full use of this, return to your (running) Sample Application
  * and restart it with the DB environment variable set to "oracle". For example, on most *nix flavors (including
  * Mac OS X), that looks like:
  *
@@ -98,8 +98,8 @@
  * No need to leave it behind.
  *
  * Advanced users: LoopBack supports multiple data sources simultaneously, albeit on a per-model basis. In your
- * next project, try connecting a schema-less model (e.g. our Ammo example) to a Mongo data source, while
- * connecting a legacy model (e.g. this Weapon example) to an Oracle data source.
+ * next project, try connecting a schema-less model (e.g. our Note example) to a Mongo data source, while
+ * connecting a legacy model (e.g. this Car example) to an Oracle data source.
  */
 - (IBAction)sendRequest:(id)sender {
 
