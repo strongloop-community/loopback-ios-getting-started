@@ -14,7 +14,7 @@ Contributing to `loopback-ios-getting-started` is easy. In a few simple steps:
   * Adhere to code style outlined in the [Google C++ Style Guide][] and
     [Google Javascript Style Guide][].
 
-  * Sign the [Contributor License Agreement](https://cla.strongloop.com/strongloop/loopback-ios-getting-started)
+  * Sign the [Contributor License Agreement](https://cla.strongloop.com/agreements/strongloop/loopback-ios-getting-started)
 
   * Submit a pull request through Github.
 
