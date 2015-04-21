@@ -5,8 +5,7 @@ from UI to data and back again.
 
 ## Installation
 
-The Guide assumes you have [XCode][xcode] installed and a running [Sample
-Application][strongnode] server.
+The Guide assumes you have [XCode][xcode] installed and a running LoopBack application.
 
  1. Clone the Guide Application: `git clone https://github.com/strongloop/loopback-guide-app`
  1. Open the project: `open loopback-guide-app/LoopBackGuideApplication/LoopBackGuideApplication.xcodeproj/`
