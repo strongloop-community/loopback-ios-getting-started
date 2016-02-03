@@ -24,3 +24,7 @@ Holler at us: [callback@strongloop.com][email]
 [xcode]: https://developer.apple.com/xcode/
 [strongnode]: http://docs.strongloop.com/strongnode/
 [email]: mailto:callback@strongloop.com
+
+---
+
+[More LoopBack examples](https://github.com/strongloop/loopback-example)
